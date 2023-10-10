@@ -6,10 +6,10 @@ export interface Product {
 
 export interface ProductPart {
     proportion: number,
-    bucketsSizes: BucketSizes[]
+    bucketsSizes: Bucket[]
 }
 
-export interface BucketSizes {
+export interface Bucket {
     country: BucketCountry,
     presentation: BucketPresentation,
     liters: number,
@@ -19,3 +19,13 @@ export interface BucketSizes {
 export type BucketCountry = "GUA" | "PY" | "CH" | "AR"
 
 export type BucketPresentation = "cuarto" | "galon" | "balde" | "tambor"
+
+export interface CostByCountry {
+    country: BucketCountry,
+    totalCost: number,
+    buckets: Bucket[]
+}
+
+export type ListOfCostByCountry = {
+    [key in BucketCountry]?: CostByCountry
+}
