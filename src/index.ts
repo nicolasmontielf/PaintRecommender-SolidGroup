@@ -1,24 +1,60 @@
 import PRODUCTS from './data/products.json'
 import { Product, Bucket, BucketCountry, CostByCountry, ListOfCostByCountry } from './types'
+import inquirer from 'inquirer'
 
 const products = PRODUCTS as Product[]
 
-function main() {
-    const userInputCodigoProducto = "652498b4e708dbf6092c8451";
-    const userInputQuantity = 320;
+function openConsole() {
+    console.log("Hey, bienvenido! Ingresa el código del producto y la cantidad que necesitas para calcular el costo total y la mejor opción de compra.");
 
-    // Find product
-    const product = products.find(product => product.id === userInputCodigoProducto);
-    if (!product) {
-        console.log("No se encontró el producto");
-        return;
+    inquirer.prompt([
+        'Ingresa el código del producto',
+        'Ingresa la cantidad de pintura que necesitas (en litros)'
+    ]).then(answers => {
+        // Validate the input
+        const productId = answers[0]
+        const quantity = answers[1]
+        validateInput(productId, quantity);
+
+        // Get the product
+        const product = getProductById(productId);
+        const result = main(product!, quantity)
+        console.log('result', result)
+    }).catch(error => {
+        if (error.isTtyError) {
+            console.error("No podemos mostrar el prompt aqui :(")
+        } else {
+            console.error(error.message)
+        }
+    })
+}
+
+function validateInput(productId: string, quantity: number): void {
+    if (!productId) {
+        throw new Error("El código del producto no puede estar vacío");
     }
 
+    const productExists = getProductById(productId);
+    if (!productExists) {
+        throw new Error("El producto no existe");
+    }
+
+    if (!quantity) {
+        throw new Error("La cantidad de pintura no puede estar vacía");
+    }
+
+    const quantityNumber = Number(quantity);
+    if (isNaN(quantityNumber)) {
+        throw new Error("La cantidad de pintura debe ser un número");
+    }
+}
+
+function main(product: Product, quantity: number) {
     // Search by parts of the product
     const listTotalCostByCountry = {} as ListOfCostByCountry
     for (let part of product.parts) {
         // Calculate the total needed of the part and some other data related
-        const totalNeeded = userInputQuantity * part.proportion;
+        const totalNeeded = quantity * part.proportion;
         const partName = part.name;
         const buckets = part.bucketsSizes;
 
@@ -44,6 +80,10 @@ function main() {
     }
 
     return getLessExpensiveCountry(listTotalCostByCountry);
+}
+
+function getProductById(productId: string): Product | undefined {
+    return products.find(product => product.id === productId);
 }
 
 // Calculate the least expensive country (it checks the total cost and the amount of products)
@@ -120,5 +160,4 @@ function getAvailableCountries(buckets: Bucket[]): BucketCountry[] {
     return [...new Set(allCountries)]
 }
 
-
-main();
+openConsole();
