@@ -5,6 +5,7 @@ export interface Product {
 }
 
 export interface ProductPart {
+    name: string,
     proportion: number,
     bucketsSizes: Bucket[]
 }
@@ -23,7 +24,9 @@ export type BucketPresentation = "cuarto" | "galon" | "balde" | "tambor"
 export interface CostByCountry {
     country: BucketCountry,
     totalCost: number,
-    buckets: Bucket[]
+    buckets: {
+        [part: string]: Bucket[]
+    }
 }
 
 export type ListOfCostByCountry = {
