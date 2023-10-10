@@ -1,0 +1,210 @@
+[
+    {
+        "id": "652498b4e708dbf6092c8451",
+        "name": "officia aliquip",
+        "parts": [
+            {
+                "proportion": 0.70,
+                "bucketsSizes": [
+                    {
+                        "country": "PY",
+                        "presentation": "balde",
+                        "liters": 18,
+                        "price": 144
+                    },
+                    {
+                        "country": "GUA",
+                        "presentation": "balde",
+                        "liters": 13,
+                        "price": 104
+                    },
+                    {
+                        "country": "CH",
+                        "presentation": "galon",
+                        "liters": 5,
+                        "price": 40
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "balde",
+                        "liters": 16,
+                        "price": 128
+                    },
+                    {
+                        "country": "CH",
+                        "presentation": "tambor",
+                        "liters": 44,
+                        "price": 352
+                    },
+                    {
+                        "country": "CH",
+                        "presentation": "balde",
+                        "liters": 16,
+                        "price": 128
+                    },
+                    {
+                        "country": "GUA",
+                        "presentation": "galon",
+                        "liters": 6,
+                        "price": 48
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "balde",
+                        "liters": 13,
+                        "price": 104
+                    },
+                    {
+                        "country": "CH",
+                        "presentation": "balde",
+                        "liters": 17,
+                        "price": 136
+                    },
+                    {
+                        "country": "AR",
+                        "presentation": "tambor",
+                        "liters": 86,
+                        "price": 688
+                    },
+                    {
+                        "country": "GUA",
+                        "presentation": "galon",
+                        "liters": 7,
+                        "price": 56
+                    },
+                    {
+                        "country": "AR",
+                        "presentation": "galon",
+                        "liters": 6,
+                        "price": 48
+                    },
+                    {
+                        "country": "CH",
+                        "presentation": "tambor",
+                        "liters": 85,
+                        "price": 680
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "cuarto",
+                        "liters": 2,
+                        "price": 16
+                    },
+                    {
+                        "country": "AR",
+                        "presentation": "cuarto",
+                        "liters": 1,
+                        "price": 8
+                    },
+                    {
+                        "country": "AR",
+                        "presentation": "tambor",
+                        "liters": 50,
+                        "price": 400
+                    }
+                ]
+            },
+            {
+                "proportion": 0.30,
+                "bucketsSizes": [
+                    {
+                        "country": "CH",
+                        "presentation": "tambor",
+                        "liters": 44,
+                        "price": 352
+                    },
+                    {
+                        "country": "GUA",
+                        "presentation": "cuarto",
+                        "liters": 2,
+                        "price": 16
+                    },
+                    {
+                        "country": "GUA",
+                        "presentation": "cuarto",
+                        "liters": 1,
+                        "price": 8
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "galon",
+                        "liters": 7,
+                        "price": 56
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "tambor",
+                        "liters": 65,
+                        "price": 520
+                    },
+                    {
+                        "country": "GUA",
+                        "presentation": "tambor",
+                        "liters": 42,
+                        "price": 336
+                    },
+                    {
+                        "country": "CH",
+                        "presentation": "cuarto",
+                        "liters": 1,
+                        "price": 8
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "tambor",
+                        "liters": 80,
+                        "price": 640
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "tambor",
+                        "liters": 50,
+                        "price": 400
+                    },
+                    {
+                        "country": "AR",
+                        "presentation": "cuarto",
+                        "liters": 3,
+                        "price": 24
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "cuarto",
+                        "liters": 2,
+                        "price": 16
+                    },
+                    {
+                        "country": "AR",
+                        "presentation": "galon",
+                        "liters": 4,
+                        "price": 32
+                    },
+                    {
+                        "country": "CH",
+                        "presentation": "tambor",
+                        "liters": 72,
+                        "price": 576
+                    },
+                    {
+                        "country": "PY",
+                        "presentation": "galon",
+                        "liters": 5,
+                        "price": 40
+                    },
+                    {
+                        "country": "AR",
+                        "presentation": "tambor",
+                        "liters": 47,
+                        "price": 376
+                    },
+                    {
+                        "country": "GUA",
+                        "presentation": "tambor",
+                        "liters": 53,
+                        "price": 424
+                    }
+                ]
+            }
+        ]
+    }
+]
