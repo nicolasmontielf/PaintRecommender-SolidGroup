@@ -1,35 +1,9 @@
 import PRODUCTS from './data/products.json'
-import { Product, Bucket, BucketCountry, CostByCountry, ListOfCostByCountry } from './types'
-import inquirer from 'inquirer'
+import type { Product, Bucket, BucketCountry, CostByCountry, ListOfCostByCountry } from './types'
 
 const products = PRODUCTS as Product[]
 
-function openConsole() {
-    console.log("Hey, bienvenido! Ingresa el código del producto y la cantidad que necesitas para calcular el costo total y la mejor opción de compra.");
-
-    inquirer.prompt([
-        'Ingresa el código del producto',
-        'Ingresa la cantidad de pintura que necesitas (en litros)'
-    ]).then(answers => {
-        // Validate the input
-        const productId = answers[0]
-        const quantity = answers[1]
-        validateInput(productId, quantity);
-
-        // Get the product
-        const product = getProductById(productId);
-        const result = main(product!, quantity)
-        console.log('result', result)
-    }).catch(error => {
-        if (error.isTtyError) {
-            console.error("No podemos mostrar el prompt aqui :(")
-        } else {
-            console.error(error.message)
-        }
-    })
-}
-
-function validateInput(productId: string, quantity: number): void {
+export function validateInput(productId: string, quantity: number, retrieveProduct: boolean = true): Product | void {
     if (!productId) {
         throw new Error("El código del producto no puede estar vacío");
     }
@@ -47,9 +21,13 @@ function validateInput(productId: string, quantity: number): void {
     if (isNaN(quantityNumber)) {
         throw new Error("La cantidad de pintura debe ser un número");
     }
+
+    if (retrieveProduct) {
+        return productExists;
+    }
 }
 
-function main(product: Product, quantity: number) {
+export function calculateCostByCountry(product: Product, quantity: number): ListOfCostByCountry {
     // Search by parts of the product
     const listTotalCostByCountry = {} as ListOfCostByCountry
     for (let part of product.parts) {
@@ -73,17 +51,22 @@ function main(product: Product, quantity: number) {
                 totalCost: calculateTotalCostByBuckets(bucketsNeeded, listTotalCostByCountry[country]?.totalCost),
                 buckets: {
                     ...listTotalCostByCountry[country]?.buckets,
-                    [partName]: [...listTotalCostByCountry[country]?.buckets?.[partName] ?? [], ...bucketsNeeded]
+                    [partName]: [...bucketsNeeded]
                 }
             }
         }
     }
 
-    return getLessExpensiveCountry(listTotalCostByCountry);
+    return listTotalCostByCountry;
 }
 
 function getProductById(productId: string): Product | undefined {
     return products.find(product => product.id === productId);
+}
+
+export function orderByLessExpensiveCountry(list: ListOfCostByCountry): CostByCountry[] {
+    const countries = Object.values(list);
+    return countries.sort((a, b) => a.totalCost - b.totalCost);
 }
 
 // Calculate the least expensive country (it checks the total cost and the amount of products)
@@ -159,5 +142,3 @@ function getAvailableCountries(buckets: Bucket[]): BucketCountry[] {
     const allCountries = buckets.map(bucket => bucket.country);
     return [...new Set(allCountries)]
 }
-
-openConsole();
